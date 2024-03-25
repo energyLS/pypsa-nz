@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "pypsa-nz"
+title: "pypsa-nz"
+repository: https://github.com/energyls/pypsa-nz
+version: 0.0.0
+doi: "N/A"
+date-released: "N/A"
+license: MIT
+authors:
+  - family-names: Schumm
+    given-names: Leon
+    orcid: https://orcid.org/0000-0002-4766-5136
+    

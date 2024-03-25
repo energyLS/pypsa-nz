@@ -1,0 +1,3 @@
+example: "setting"
+
+cluster: "remote:path/on/remote"
