@@ -1,7 +1,6 @@
-
 \documentclass[5p]{elsarticle}
 
-\journal{TBA}
+\journal{YEEES33}
 
 \bibliographystyle{elsarticle-num}
 \biboptions{numbers,sort&compress}
@@ -32,6 +31,7 @@
 \usepackage{multirow}
 \usepackage{threeparttable}
 \usepackage{pdflscape}
+\usepackage[acronym]{glossaries}
 \usepackage[export]{adjustbox}
 \usepackage[version=4]{mhchem}
 \usepackage[colorlinks]{hyperref}
@@ -55,9 +55,7 @@
 \newcites{S}{Supplementary References}
 \bibliographystyleS{elsarticle-num}
 
-\graphicspath{
-    {../results/graphics/},
-}
+
 
 % \usepackage[
 % 	type={CC},
@@ -82,29 +80,28 @@
 
 \begin{frontmatter}
 
-	\title{ pypsa-nz }
+	\title{Offtaker Regulation: Impacts for New Zealand Hydrogen Export Ambitions}
     
-	\author[affil]{ Leon Schumm } % \corref{correspondingauthor}
-	\ead{ leon1.schumm@oth-regensburg.de }
+	\author[tub,oth]{Leon Schumm} % \corref{correspondingauthor}
+	\author[uc]{Jannik Haas}
+	\ead{leon1.schumm@oth-regensburg.de}
 	
-	\address[affil]{ Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany }
+	\address[tub]{ Department of Digital Transformation in Energy Systems, Institute of Energy Technology, Technische Universität Berlin, Fakultät III, Einsteinufer 25 (TA 8), 10587 Berlin, Germany }
+	\address[oth]{Research Center on Energy Transmission and Storage (FENES), Faculty of Electrical and Information Technology, University of Applied Sciences (OTH) Regensburg, Seybothstrasse 2, 93053 Regensburg, Germany}
+	\address[uc]{Department of Civil and Natural Resources Engineering, University of Canterbury,  Christchurch, New Zealand} %Private Bag 4800
 
 	\begin{abstract}
-		\input{sections/abstract.tex}
+		\input{../report/sections/abstract.tex}
 	\end{abstract}
 
 	\begin{keyword}
-		TODO
+		Energy Transition, Co-Optimization, Hydrogen export, climate-neutral, Neo-colonialism, Hydrogen prices
 	\end{keyword}
 
 	% \begin{graphicalabstract}
 	% \end{graphicalabstract}
 
-	\begin{highlights}
-		\item A
-		\item B
-		\item C
-	\end{highlights}
+
 
 \end{frontmatter}
 
@@ -115,31 +112,34 @@
 \section{Introduction}
 \label{sec:intro}
 
-\input{sections/introduction.tex}
+\input{../report/sections/introduction.tex}
 
 \section{Methods}
 \label{sec:methods}
 
-\input{sections/methods.tex}
+\input{../report/sections/methods.tex}
 
 \section{Results}
 \label{sec:results}
 
-\input{sections/results.tex}
+\input{../report/sections/results.tex}
 
 \section{Discussion}
 \label{sec:discussion}
 
-\input{sections/discussion.tex}
+\input{../report/sections/discussion.tex}
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-\input{sections/conclusion.tex}
+\input{../report/sections/conclusion.tex}
 
 \section*{Acknowledgements}
 
-% XY gratefully acknowledge funding from XY under grant no. 00000.
+We are grateful for helpful comments by --. We thank the
+reviewers for their valuable feedback and suggestions.
+
+We gratefully acknowledge funding from the H2Global meets Africa project (03SF0703A) by the German Federal Ministry of Education and Research.
 
 \section*{License}
 % \doclicenseLongText
@@ -176,7 +176,7 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 % tidy with https://flamingtempura.github.io/bibtex-tidy/
 \addcontentsline{toc}{section}{References}
 \renewcommand{\ttdefault}{\sfdefault}
-\bibliography{references}
+\bibliography{references_mylibrary}
 
 % supplementary information
 
@@ -201,7 +201,7 @@ The code to reproduce the experiments is available at \href{https://github.com/e
 
 \addcontentsline{toc}{section}{Supplementary References}
 \renewcommand{\ttdefault}{\sfdefault}
-\bibliographyS{references}
+\bibliographyS{references_mylibrary}
 
 \end{document}
 
