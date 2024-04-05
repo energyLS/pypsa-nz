@@ -31,3 +31,6 @@ To generate a PDF of the dependency graph of all steps `build/dag.pdf` run:
 ## License
 
 The code in this repo is MIT licensed, see `./LICENSE.md`.
+
+## Brownfield capacities
+![Brownfield capacities](report/readme/brownfield_capacities_.png?raw=true "Brownfield capacities")
