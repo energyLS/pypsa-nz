@@ -1,24 +1,20 @@
 # pypsa-nz
 
-Investigating New Zealands energy system with PyPSA
+![Size](https://img.shields.io/github/repo-size/energyLS/pypsa-nz)
 
-This repository contains the entire scientific project, including code and report. The philosophy behind this repository is that no intermediary results are included, but all results are computed from raw data and code.
+PyPSA-NZ is an open-source energy system model in high spatial and temporal resolution, based on 
+[PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth) and [PyPSA-Earth-Sec](https://github.com/pypsa-meets-earth/pypsa-earth-sec).
+This repository contains analysis of solved model runs from PyPSA-Earth-Sec in the context of New Zealand, as well as data preparation, validation, etc.
 
-## Getting ready
+It is currently under development.
 
-You need [mamba](https://mamba.readthedocs.io/en/latest/) to run the analysis. Using mamba, you can create an environment from within you can run it:
+## Clone the repository
 
-    mamba env create -f environment.yaml
+```bash
+    git clone https://github.com/energyLS/pypsa-nz.git
+```
 
-## Run the analysis
 
-    snakemake -call
-
-This will run all analysis steps to reproduce results and eventually build the report.
-
-To generate a PDF of the dependency graph of all steps `build/dag.pdf` run:
-
-    snakemake -c1 --use-conda -f dag
 
 ## Repo structure
 
@@ -26,11 +22,14 @@ To generate a PDF of the dependency graph of all steps `build/dag.pdf` run:
 * `data`: place for raw data
 * `report`: contains all files necessary to build the report; plots and result files are generated automatically
 * `workflow`: contains the Snakemake workflow
-* `build`: will contain all results (does not exist initially)
 
 ## License
 
 The code in this repo is MIT licensed, see `./LICENSE.md`.
 
 ## Brownfield capacities
+The brownfield capacities are a result of the PyPSA-Earth workflow and the visualization is based on 
+the [transmission system visualisation](https://github.com/pypsa-meets-earth/documentation/blob/main/notebooks/viz/regional_transm_system_viz.ipynb).
+
+
 ![Brownfield capacities](report/readme/brownfield_capacities_.png?raw=true "Brownfield capacities")
