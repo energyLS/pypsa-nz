@@ -32,4 +32,4 @@ The brownfield capacities are a result of the PyPSA-Earth workflow and the visua
 the [transmission system visualisation](https://github.com/pypsa-meets-earth/documentation/blob/main/notebooks/viz/regional_transm_system_viz.ipynb).
 
 
-![Brownfield capacities](report/readme/brownfield_capacities_.png?raw=true "Brownfield capacities")
+![Brownfield capacities](results/readme/brownfield_capacities_.png?raw=true "Brownfield capacities")
