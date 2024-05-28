@@ -7,8 +7,8 @@ dconf
 *.log
 *.pdf
 *.png
-!report/readme/brownfield_capacities_.pdf
-!report/readme/brownfield_capacities_.png
+!readme/brownfield_capacities_.pdf
+!readme/brownfield_capacities_.png
 
 # generated files
 results/
