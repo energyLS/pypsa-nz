@@ -1,0 +1,199 @@
+tech_colors:
+  (CAPEX < 100.0 M€ thres.): "lightgray"
+  (OPEX < 100.0 M€ thres.): "gray"
+  (Dispatch < 1.0 TWh thres.): "gray"
+  H2 Electrolysis electricity: "lightgray"
+  Domestic electricity: "gray"
+  SMR CC: "darkblue"
+  gas for industry CC: "brown"
+  process emissions CC: "gray"
+  CO2 pipeline: "gray"
+  onwind: "dodgerblue"
+  onshore wind: "#235ebc"
+  Onshore Wind (CAPEX): "#235ebc"
+  Onshore Wind: "#235ebc"
+  offwind: "#6895dd"
+  offshore wind: "#6895dd"
+  offwind-ac: "c"
+  offshore wind (AC): "#6895dd"
+  Offshore Wind (AC): "#6895dd"
+  offwind-dc: "#74c6f2"
+  offshore wind (DC): "#74c6f2"
+  Offshore Wind (DC): "#74c6f2"
+  wave: '#004444'
+  hydro: '#3B5323'
+  hydro reservoir:  '#298c81'
+  Reservoir & Dam:  '#298c81'
+  ror: '#78AB46'
+  run of river: '#78AB46'
+  Run of River: '#78AB46'
+  hydroelectricity: 'blue'
+  solar: "orange"
+  solar PV: "#f9d002"
+  Solar (CAPEX): "#f9d002"
+  Solar: "#f9d002"
+  solar thermal: coral
+  solar rooftop: '#ffef60'
+  OCGT: wheat
+  OCGT marginal: sandybrown
+  OCGT-heat: '#ee8340'
+  Open-Cycle Gas (CAPEX): sandybrown
+  Open-Cycle Gas: sandybrown
+  gas boiler: '#ee8340'
+  gas boilers: '#ee8340'
+  gas boiler marginal: '#ee8340'
+  urban central gas CHP (CAPEX): '#ee8340'
+  urban central gas CHP: '#ee8340'
+  urban central gas CHP CC: '#ee8340'
+  residential urban decentral heat: '#ee8340'
+  services urban decentral heat: '#ee8340'
+  gas-to-power/heat: 'brown'
+  gas: brown
+  services gas: brown
+  residential gas: brown
+  gas (OPEX): brown
+  natural gas: brown
+  SMR: '#4F4F2F'
+  oil: '#B5A642'
+  oil boiler: '#B5A677'
+  Oil (OPEX): 'black'
+  Oil: 'black'
+  lines: k
+  transmission lines: k
+  H2: m
+  H2 liquefaction: m
+  hydrogen storage: m
+  H2 Store: '#bf13a0'
+  H2 storage: '#bf13a0'
+  H2 Storage (CAPEX): '#bf13a0'
+  land transport fuel cell: '#6b3161'
+  H2 pipeline: '#f081dc'
+  H2 pipeline retrofitted: '#ba99b5'
+  H2 Fuel Cell: '#c251ae'
+  H2 fuel cell: '#c251ae'
+  H2 turbine: '#991f83'
+  H2 Electrolysis: '#ff29d9'
+  H2 Electrolysis (CAPEX): '#ff29d9'
+  H2 electrolysis: '#ff29d9'
+  battery: slategray
+  battery storage: slategray
+  battery discharger: slategray
+  home battery: '#614700'
+  home battery storage: '#614700'
+  Nuclear: r
+  Nuclear marginal: r
+  nuclear: r
+  uranium: r
+  Coal: "#505050"
+  coal: "#505050"
+  Coal marginal: "#505050"
+  Coal (OPEX): "#505050"
+  Lignite: grey
+  lignite: grey
+  Lignite marginal: grey
+  CCGT: '#ee8340'
+  CCGT marginal: '#ee8340'
+  Combined-Cycle Gas (OPEX): '#ee8340'
+  Combined-Cycle Gas: '#ee8340'
+  heat pumps: '#76EE00'
+  heat pump: '#76EE00'
+  air heat pump: '#76EE00'
+  ground heat pump: '#40AA00'
+  power-to-heat: 'red'
+  resistive heater: pink
+  Sabatier: '#FF1493'
+  methanation: '#FF1493'
+  power-to-gas: 'purple'
+  power-to-liquid: 'darkgreen'
+  helmeth: '#7D0552'
+  DAC: 'deeppink'
+  DAC (CAPEX): 'deeppink'
+  co2 stored: '#123456'
+  co2 stored (CAPEX): '#123456'
+  CO2 sequestration: '#123456'
+  CC: k
+  co2: '#123456'
+  co2 vent: '#654321'
+  agriculture heat: '#D07A7A'
+  agriculture machinery oil: '#1e1e1e'
+  agriculture machinery oil emissions: '#111111'
+  agriculture electricity: '#222222'
+  agriculture oil: '#111111'
+  solid biomass for industry co2 from atmosphere: '#654321'
+  solid biomass for industry co2 to stored: '#654321'
+  solid biomass for industry CC: '#654321'
+  urban central solid biomass CHP: '#654321'
+  urban central solid biomass CHP CC: '#654321'
+  gas for industry co2 to atmosphere: '#654321'
+  gas for industry co2 to stored: '#654321'
+  Fischer-Tropsch: '#44DD33'
+  kerosene for aviation: '#44BB11'
+  naphtha for industry: '#44FF55'
+  land transport oil: '#44DD33'
+  water tanks: '#BBBBBB'
+  hot water storage: '#BBBBBB'
+  hot water charging: '#BBBBBB'
+  hot water discharging: '#999999'
+  # CO2 pipeline: '#999999'
+  CHP: r
+  CHP heat: r
+  CHP electric: r
+  PHS: g
+  Ambient: k
+  Electric load: b
+  Heat load: r
+  heat: darkred
+  rural heat: '#880000'
+  residential rural heat: '#880000'
+  services rural heat: '#880000'
+  central heat: '#b22222'
+  urban central heat: '#b22222'
+  decentral heat: '#800000'
+  low-temperature heat for industry: '#991111'
+  process heat: '#FF3333'
+  heat demand: darkred
+  electric demand: k
+  Li ion: grey
+  district heating: '#CC4E5C'
+  retrofitting: purple
+  building retrofitting: purple
+  BEV charger: grey
+  V2G: grey
+  land transport EV: grey
+  electricity: k
+  end-use electricity: k
+  gas for industry: '#333333'
+  solid biomass for industry: '#555555'
+  industry electricity: '#222222'
+  industry new electricity: '#222222'
+  process emissions to stored: '#444444'
+  process emissions to atmosphere: '#36454F'
+  process emissions: '#222222'
+  oil emissions: '#7393B3'
+  industry oil emissions: '#B2BEB5'
+  industry coal emissions: '#666666'
+  land transport oil emissions: '#899499'
+  #land transport fuel cell: '#AAAAAA'
+  residential oil: '#799999'
+  services oil: '#499999'
+  residential biomass: 'green'
+  services biomass: 'green'
+  biogas: '#800000'
+  solid biomass: '#DAA520'
+  solid biomass (OPEX): '#DAA520'
+  today: '#D2691E'
+  shipping: '#6495ED'
+  shipping oil: "#6495ED"
+  shipping oil emissions: "#6495ED"
+  electricity distribution grid: 'y'
+  solid biomass transport: green
+  H2 for industry: "#222222"
+  H2 for shipping: "#6495ED"
+  biomass EOP: "green"
+  biomass emissions: "green"
+  biomass: "green"
+  rail transport electricity: "black"
+  rail transport oil: "black"
+  electricity demand: "black"
+  Local electricity: "black"
+  Geothermal: "#ba91b1"
