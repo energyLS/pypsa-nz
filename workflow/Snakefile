@@ -3,6 +3,9 @@
 
 localrules: all, report, clean
 
+wildcard_constraints:
+    country="[a-zA-Z]+",
+
 rule all:
     message: "Run entire analysis and compile report."
     input:
@@ -16,8 +19,10 @@ rule plot_export:
         "notebooks/modelenergy.py.ipynb"
 
 rule plot_reshares:
+    input:
+        reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
     output:
-        reshares = expand("../results/figures/reshares/{country}.pdf", country=["NZL"])
+        reshares = "../results/figures/reshares/nzl.pdf",
     notebook:
         "notebooks/re_shares.py.ipynb"
 
