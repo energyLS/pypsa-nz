@@ -15,6 +15,12 @@ rule plot_export:
     notebook:
         "notebooks/modelenergy.py.ipynb"
 
+rule plot_reshares:
+    output:
+        reshares = expand("../results/figures/reshares/{country}.pdf", country=["NZL"])
+    notebook:
+        "notebooks/re_shares.py.ipynb"
+
 
 rule paper_figs:
     input:
