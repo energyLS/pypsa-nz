@@ -26,6 +26,15 @@ rule plot_reshares:
     notebook:
         "notebooks/re_shares.py.ipynb"
 
+rule plot_regrowth:
+    input:
+        reprod = "../data/owid/modern-renewable-prod.csv",
+        edemand = "../data/owid/electricity-demand.csv",
+    output:
+        regrowth = "../results/figures/regrowth/nzl.pdf",
+    notebook:
+        "notebooks/re_growth.py.ipynb"
+
 
 rule paper_figs:
     input:
