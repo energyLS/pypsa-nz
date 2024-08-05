@@ -18,6 +18,12 @@ rule plot_export:
     notebook:
         "notebooks/modelenergy.py.ipynb"
 
+rule plot_export_quan:
+    output:
+        exportquan = "../results/figures/exportquan/export_quant.pdf",
+    notebook:
+        "notebooks/export_quan.py.ipynb"
+
 rule plot_reshares:
     input:
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
