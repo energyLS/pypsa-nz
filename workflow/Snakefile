@@ -5,6 +5,7 @@ localrules: all, report, clean
 
 wildcard_constraints:
     country="[a-zA-Z]+",
+    sweep="[a-zA-Z]+",
 
 rule all:
     message: "Run entire analysis and compile report."
@@ -19,8 +20,13 @@ rule plot_export:
         "notebooks/modelenergy.py.ipynb"
 
 rule plot_export_quan:
+    params:
+        sweep = ["year"]
+    input:
+        nz_goals = "../data/nz_goals/nz_goals.csv"
     output:
-        exportquan = "../results/figures/exportquan/export_quant.pdf",
+        # exportquan = expand("../results/figures/exportquan/export_quant_{param}.pdf", param=["test"]),
+        exportquan = f"../results/figures/exportquan/export_quant_year.pdf",
     notebook:
         "notebooks/export_quan.py.ipynb"
 
@@ -38,6 +44,7 @@ rule plot_regrowth:
         edemand = "../data/owid/electricity-demand.csv",
     output:
         regrowth = "../results/figures/regrowth/nzl.pdf",
+        regrowth_data = "../resources/regrowth/renewable-growth.csv",
     notebook:
         "notebooks/re_growth.py.ipynb"
 
@@ -45,6 +52,9 @@ rule plot_regrowth:
 rule paper_figs:
     input:
         modelenergy = "../results/figures/modelenergy/export_comp.pdf",
+        exportquan = "../results/figures/exportquan/export_quant.pdf",
+        reshares = "../results/figures/reshares/nzl.pdf",
+        regrowth = "../results/figures/regrowth/nzl.pdf",
 
 
 
