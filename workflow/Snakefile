@@ -1,7 +1,11 @@
 
-configfile: "config/config.yaml"
+#configfile: "config/config.yaml"
 
 localrules: all, report, clean
+
+wildcard_constraints:
+    country="[a-zA-Z]+",
+    sweep="[a-zA-Z]+",
 
 rule all:
     message: "Run entire analysis and compile report."
@@ -9,48 +13,95 @@ rule all:
         "report/report.pdf",
 
 
-rule report:
-    message: "Compile report."
+rule plot_export:
+    output:
+        modelenergy = "../results/figures/modelenergy/export_comp.pdf",
+    notebook:
+        "notebooks/modelenergy.py.ipynb"
+
+rule plot_export_quan:
+    params:
+        sweep = ["year"]
     input:
-        tex="report/report.tex",
-        bib="report/references.bib"
-    output: "report/report.pdf"
-    shell:
-        """
-        pdflatex {input.tex}
-        bibtex {input.bib})
-        pdflatex {input.tex}
-        pdflatex {input.tex}
-        """
+        nz_goals = "../data/nz_goals/nz_goals.csv",
+        edemand = "../data/owid/electricity-demand.csv",
+        reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
+    output:
+        # exportquan = expand("../results/figures/exportquan/export_quant_{param}.pdf", param=["test"]),
+        exportquan = f"../results/figures/exportquan/export_quant_year.pdf",
+    notebook:
+        "notebooks/export_quan.py.ipynb"
+
+rule plot_reshares:
+    input:
+        reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
+    output:
+        reshares = "../results/figures/reshares/nzl.pdf",
+    notebook:
+        "notebooks/re_shares.py.ipynb"
+
+rule plot_regrowth:
+    input:
+        reprod = "../data/owid/modern-renewable-prod.csv",
+        edemand = "../data/owid/electricity-demand.csv",
+    output:
+        regrowth = "../results/figures/regrowth/nzl.pdf",
+        regrowth_data = "../resources/regrowth/renewable-growth.csv",
+    notebook:
+        "notebooks/re_growth.py.ipynb"
 
 
-rule dag:
-     message: "Plot dependency graph of the workflow."
-     output:
-         dot="resources/dag.dot",
-         pdf="resources/dag.pdf"
-     shell:
-         """
-         snakemake --rulegraph > {output.dot}
-         dot -Tpdf -o {output.pdf} {output.dot}
-         """
+rule paper_figs:
+    input:
+        modelenergy = "../results/figures/modelenergy/export_comp.pdf",
+        exportquan = "../results/figures/exportquan/export_quant.pdf",
+        reshares = "../results/figures/reshares/nzl.pdf",
+        regrowth = "../results/figures/regrowth/nzl.pdf",
 
 
-rule clean:
-    message: "Remove all build results but keep downloaded data."
-    run:
-         import shutil
 
-         shutil.rmtree("resources")
-         shutil.rmtree("results")
-         print("Data downloaded to data/ has not been cleaned.")
+# rule report:
+#     message: "Compile report."
+#     input:
+#         tex="report/report.tex",
+#         bib="report/references.bib"
+#     output: "report/report.pdf"
+#     shell:
+#         """
+#         pdflatex {input.tex}
+#         bibtex {input.bib})
+#         pdflatex {input.tex}
+#         pdflatex {input.tex}
+#         """
+
+
+# rule dag:
+#      message: "Plot dependency graph of the workflow."
+#      output:
+#          dot="resources/dag.dot",
+#          pdf="resources/dag.pdf"
+#      shell:
+#          """
+#          snakemake --rulegraph > {output.dot}
+#          dot -Tpdf -o {output.pdf} {output.dot}
+#          """
+
+
+# rule clean:
+#     message: "Remove all build results but keep downloaded data."
+#     run:
+#          import shutil
+
+#          shutil.rmtree("resources")
+#          shutil.rmtree("results")
+#          print("Data downloaded to data/ has not been cleaned.")
 
         
-rule sync:
-    params:
-        cluster=config["cluster"],
-    shell:
-        """
-        rsync -uvarh --no-g --exclude-from=.syncignore-send . {params.cluster}
-        rsync -uvarh --no-g --exclude-from=.syncignore-receive {params.cluster} .
-        """
+# rule sync:
+#     params:
+#         cluster=config["cluster"],
+#     shell:
+#         """
+#         rsync -uvarh --no-g --exclude-from=.syncignore-send . {params.cluster}
+#         rsync -uvarh --no-g --exclude-from=.syncignore-receive {params.cluster} .
+#         """

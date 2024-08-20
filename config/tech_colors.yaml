@@ -10,6 +10,7 @@ tech_colors:
   CO2 pipeline: "gray"
   onwind: "dodgerblue"
   onshore wind: "#235ebc"
+  wind: "#235ebc"
   Onshore Wind (CAPEX): "#235ebc"
   Onshore Wind: "#235ebc"
   offwind: "#6895dd"
@@ -28,7 +29,7 @@ tech_colors:
   run of river: '#78AB46'
   Run of River: '#78AB46'
   hydroelectricity: 'blue'
-  solar: "orange"
+  solar: "#f9d002"
   solar PV: "#f9d002"
   Solar (CAPEX): "#f9d002"
   Solar: "#f9d002"
@@ -197,3 +198,54 @@ tech_colors:
   electricity demand: "black"
   Local electricity: "black"
   Geothermal: "#ba91b1"
+  
+
+me_colors:
+  efuel: black
+  wind : "#3B6182"
+  solar: "#FFFF00"
+  battery: "#999999"
+  battery_charge: "#999999"
+  battery_discharge: "#999999"
+  battery discharger: "#999999"
+  battery_power: "#999999"
+  battery inverter: "#999999"
+  battery_energy: "#666666"
+  battery storage: "#666666"
+  hydrogen_turbine: red
+  hydrogen turbine: red
+  hydrogen_electrolyser: cyan
+  hydrogen electrolyser: cyan
+  hydrogen_energy: magenta
+  hydrogen storage: magenta
+  hydrogen storing compressor: "#ff66ff"
+  hydrogen storing decompressor: "#660066"
+  hydrogen liquefaction: "#cc3300"
+  lh2 shipping: green
+  dispatchable1: orange
+  dispatchable2: lime
+  hydrogen_submarine_pipeline: green
+  hydrogen submarine pipeline: green
+  load: black
+  efuels_load: purple
+  hydrogen_load: purple
+  methanol shipping: green
+  methanol synthesis: "#F08080"
+  methanol storage: black
+  methane shipping: green
+  methanation: "#F08080"
+  methane liquefaction: "#cc3300"
+  methane storage: black
+  ft synthesis: "#F08080"
+  ft storage: black
+  ft shipping: green
+  co2: "#999966"
+  dac: "#999966"
+  co2 storage: "#666633"
+  heat pump: red
+  hvdc: green
+  ammonia storage: orange
+  Haber-Bosch synthesis: brown
+  air separation unit: red
+  ammonia shipping: green
+  seawater desalination: "#000099"
