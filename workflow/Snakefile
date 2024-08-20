@@ -21,14 +21,15 @@ rule plot_export:
 
 rule plot_export_quan:
     params:
-        sweep = ["year"]
+        sweep = ["expansion"] #["year", "rule", "expansion"]
     input:
         nz_goals = "../data/nz_goals/nz_goals.csv",
         edemand = "../data/owid/electricity-demand.csv",
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
+        regrowth_data = "../resources/regrowth/renewable-growth.csv",
     output:
         # exportquan = expand("../results/figures/exportquan/export_quant_{param}.pdf", param=["test"]),
-        exportquan = f"../results/figures/exportquan/export_quant_year.pdf",
+        exportquan = f"../results/figures/exportquan/export_quant_expansion.pdf",
     notebook:
         "notebooks/export_quan.py.ipynb"
 
