@@ -30,6 +30,7 @@ rule plot_export_quan:
     output:
         # exportquan = expand("../results/figures/exportquan/export_quant_{param}.pdf", param=["test"]),
         exportquan = f"../results/figures/exportquan/export_quant_expansion.pdf",
+        exportquan_png = f"../results/figures/exportquan/export_quant_expansion.png",
     notebook:
         "notebooks/export_quan.py.ipynb"
 
@@ -38,15 +39,18 @@ rule plot_reshares:
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
     output:
         reshares = "../results/figures/reshares/nzl.pdf",
+        reshares_png = "../results/figures/reshares/nzl.png",
     notebook:
         "notebooks/re_shares.py.ipynb"
 
 rule plot_regrowth:
     input:
         reprod = "../data/owid/modern-renewable-prod.csv",
+        mbie = "../data/mbie/electricity.xlsx",
         edemand = "../data/owid/electricity-demand.csv",
     output:
         regrowth = "../results/figures/regrowth/nzl.pdf",
+        regrowth_png = "../results/figures/regrowth/nzl.png",
         regrowth_data = "../resources/regrowth/renewable-growth.csv",
     notebook:
         "notebooks/re_growth.py.ipynb"
@@ -55,7 +59,7 @@ rule plot_regrowth:
 rule paper_figs:
     input:
         modelenergy = "../results/figures/modelenergy/export_comp.pdf",
-        exportquan = "../results/figures/exportquan/export_quant.pdf",
+        exportquan = "../results/figures/exportquan/export_quant_year.pdf",
         reshares = "../results/figures/reshares/nzl.pdf",
         regrowth = "../results/figures/regrowth/nzl.pdf",
 
