@@ -21,18 +21,21 @@ rule plot_export:
 
 rule plot_export_quan:
     params:
-        sweep = ["expansion"] #["year", "rule", "expansion"]
+        #sweep = ["expansion"] #["year", "rule", "expansion"]
     input:
         nz_goals = "../data/nz_goals/nz_goals.csv",
         edemand = "../data/owid/electricity-demand.csv",
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
         regrowth_data = "../resources/regrowth/renewable-growth.csv",
     output:
-        # exportquan = expand("../results/figures/exportquan/export_quant_{param}.pdf", param=["test"]),
-        exportquan = f"../results/figures/exportquan/export_quant_expansion.pdf",
-        exportquan_png = f"../results/figures/exportquan/export_quant_expansion.png",
+        exportquan = "../results/figures/exportquan/export_quant_{sweep}.pdf",
+        exportquan_png = "../results/figures/exportquan/export_quant_{sweep}.png",
     notebook:
         "notebooks/export_quan.py.ipynb"
+
+rule plot_export_quan_all:
+    input:
+        exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion"]),
 
 rule plot_reshares:
     input:
@@ -59,7 +62,7 @@ rule plot_regrowth:
 rule paper_figs:
     input:
         modelenergy = "../results/figures/modelenergy/export_comp.pdf",
-        exportquan = "../results/figures/exportquan/export_quant_year.pdf",
+        exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion"]),
         reshares = "../results/figures/reshares/nzl.pdf",
         regrowth = "../results/figures/regrowth/nzl.pdf",
 
