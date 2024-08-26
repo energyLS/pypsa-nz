@@ -19,6 +19,13 @@ rule plot_export:
     notebook:
         "notebooks/modelenergy.py.ipynb"
 
+rule plot_threshold:
+    output:
+        threshold_diff = "../results/figures/rule/threshold_diff.pdf",
+        threshold_diff_png = "../results/figures/rule/threshold_diff.png",
+    notebook:
+        "notebooks/threshold_diff.py.ipynb"
+
 rule plot_export_quan:
     params:
         #sweep = ["expansion"] #["year", "rule", "expansion"]
@@ -65,6 +72,7 @@ rule paper_figs:
         exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion"]),
         reshares = "../results/figures/reshares/nzl.pdf",
         regrowth = "../results/figures/regrowth/nzl.pdf",
+        threshold_diff = "../results/figures/rule/threshold_diff.pdf",
 
 
 
