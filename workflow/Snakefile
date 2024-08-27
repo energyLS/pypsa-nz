@@ -32,6 +32,7 @@ rule plot_export_quan:
     input:
         nz_goals = "../data/nz_goals/nz_goals.csv",
         edemand = "../data/owid/electricity-demand.csv",
+        edemand_incr = "../resources/edemand_incr/edemand_incr.csv",
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
         regrowth_data = "../resources/regrowth/renewable-growth.csv",
     output:
@@ -52,6 +53,14 @@ rule plot_reshares:
         reshares_png = "../results/figures/reshares/nzl.png",
     notebook:
         "notebooks/re_shares.py.ipynb"
+
+rule get_demand_incr:
+    # input:
+    #     edemand = "../data/owid/electricity-demand.csv",
+    output:
+        edemand_incr = "../resources/edemand_incr/edemand_incr.csv",
+    notebook:
+        "notebooks/dom-demand.py.ipynb"
 
 rule plot_regrowth:
     input:
