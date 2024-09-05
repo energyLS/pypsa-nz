@@ -19,33 +19,57 @@ rule plot_export:
     notebook:
         "notebooks/modelenergy.py.ipynb"
 
+rule plot_threshold:
+    output:
+        threshold_diff = "../results/figures/rule/threshold_diff.pdf",
+        threshold_diff_png = "../results/figures/rule/threshold_diff.png",
+    notebook:
+        "notebooks/threshold_diff.py.ipynb"
+
 rule plot_export_quan:
     params:
-        sweep = ["year"]
+        #sweep = ["expansion"] #["year", "rule", "expansion"]
     input:
         nz_goals = "../data/nz_goals/nz_goals.csv",
         edemand = "../data/owid/electricity-demand.csv",
+        edemand_incr = "../resources/edemand_incr/edemand_incr.csv",
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
+        regrowth_data = "../resources/regrowth/renewable-growth.csv",
     output:
-        # exportquan = expand("../results/figures/exportquan/export_quant_{param}.pdf", param=["test"]),
-        exportquan = f"../results/figures/exportquan/export_quant_year.pdf",
+        exportquan = "../results/figures/exportquan/export_quant_{sweep}.pdf",
+        exportquan_png = "../results/figures/exportquan/export_quant_{sweep}.png",
     notebook:
         "notebooks/export_quan.py.ipynb"
+
+rule plot_export_quan_all:
+    input:
+        exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion"]),
 
 rule plot_reshares:
     input:
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
     output:
         reshares = "../results/figures/reshares/nzl.pdf",
+        reshares_png = "../results/figures/reshares/nzl.png",
     notebook:
         "notebooks/re_shares.py.ipynb"
+
+rule get_demand_incr:
+    # input:
+    #     edemand = "../data/owid/electricity-demand.csv",
+    output:
+        edemand_incr = "../resources/edemand_incr/edemand_incr.csv",
+    notebook:
+        "notebooks/dom-demand.py.ipynb"
 
 rule plot_regrowth:
     input:
         reprod = "../data/owid/modern-renewable-prod.csv",
+        mbie = "../data/mbie/electricity.xlsx",
         edemand = "../data/owid/electricity-demand.csv",
     output:
         regrowth = "../results/figures/regrowth/nzl.pdf",
+        regrowth_png = "../results/figures/regrowth/nzl.png",
         regrowth_data = "../resources/regrowth/renewable-growth.csv",
     notebook:
         "notebooks/re_growth.py.ipynb"
@@ -54,9 +78,10 @@ rule plot_regrowth:
 rule paper_figs:
     input:
         modelenergy = "../results/figures/modelenergy/export_comp.pdf",
-        exportquan = "../results/figures/exportquan/export_quant.pdf",
+        exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion"]),
         reshares = "../results/figures/reshares/nzl.pdf",
         regrowth = "../results/figures/regrowth/nzl.pdf",
+        threshold_diff = "../results/figures/rule/threshold_diff.pdf",
 
 
 
