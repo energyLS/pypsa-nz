@@ -75,7 +75,7 @@ rule plot_regrowth:
         "notebooks/re_growth.py.ipynb"
 
 
-rule paper_figs:
+rule collect_figures:
     input:
         modelenergy = "../results/figures/modelenergy/export_comp.pdf",
         exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion"]),
