@@ -55,8 +55,8 @@ rule plot_reshares:
         "notebooks/re_shares.py.ipynb"
 
 rule get_demand_incr:
-    # input:
-    #     edemand = "../data/owid/electricity-demand.csv",
+    input:
+        edemand_raw = "../data/daalder2021/plot-data.csv",
     output:
         edemand_incr = "../resources/edemand_incr/edemand_incr.csv",
     notebook:
