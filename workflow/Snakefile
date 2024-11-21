@@ -1,7 +1,17 @@
+from snakemake.remote.HTTP import RemoteProvider as HTTPRemoteProvider
+import sys
 
-#configfile: "config/config.yaml"
+sys.path.append("./scripts")
 
-localrules: all, report, clean
+from os.path import normpath, exists, isdir
+from shutil import copyfile, move
+
+HTTP = HTTPRemoteProvider()
+
+
+configfile: "../config/config.yaml"
+
+localrules: all
 
 wildcard_constraints:
     country="[a-zA-Z]+",
@@ -73,6 +83,32 @@ rule plot_regrowth:
         regrowth_data = "../resources/regrowth/renewable-growth.csv",
     notebook:
         "notebooks/re_growth.py.ipynb"
+
+rule get_electrolyzer_eff:
+    input:
+        costs = expand("../resources/costs_{planning_horizons}.csv", planning_horizons=[2020,2025,2030,2035,2040,2045,2050]),
+    output:
+        electrolyzer_eff = "../resources/electrolyzer_eff.csv",
+    notebook:
+        "notebooks/electrolyzer_eff.py.ipynb"
+
+rule retrieve_cost_data:
+    input:
+        HTTP.remote(
+            f"raw.githubusercontent.com/PyPSA/technology-data/{config['costs']['version']}/outputs/costs"
+            + "_{planning_horizons}.csv",
+            keep_local=True,
+        ),
+    output:
+        costs="../resources/costs_{planning_horizons}.csv",
+    resources:
+        mem_mb=5000,
+    run:
+        move(input[0], output[0])
+
+rule retrieve_cost_data_all:
+    input:
+        costs = expand("../resources/costs_{planning_horizons}.csv", planning_horizons=[2020,2025,2030,2035,2040,2045,2050]),
 
 
 rule collect_figures:
