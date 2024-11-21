@@ -45,9 +45,12 @@ rule plot_export_quan:
         edemand_incr = "../resources/edemand_incr/edemand_incr.csv",
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
         regrowth_data = "../resources/regrowth/renewable-growth.csv",
+        electrolyzer_eff = "../resources/electrolyzer_eff.csv",
     output:
         exportquan = "../results/figures/exportquan/export_quant_{sweep}.pdf",
         exportquan_png = "../results/figures/exportquan/export_quant_{sweep}.png",
+        exportquan_line = "../results/figures/exportquan/export_quant_line_{sweep}.pdf",
+        exportquan_line_png = "../results/figures/exportquan/export_quant_line_{sweep}.png",
     notebook:
         "notebooks/export_quan.py.ipynb"
 
