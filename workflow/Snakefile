@@ -47,8 +47,8 @@ rule plot_export_quan:
         regrowth_data = "../resources/regrowth/renewable-growth.csv",
         electrolyzer_eff = "../resources/electrolyzer_eff.csv",
     output:
-        exportquan = "../results/figures/exportquan/export_quant_{sweep}.pdf",
-        exportquan_png = "../results/figures/exportquan/export_quant_{sweep}.png",
+        # exportquan = "../results/figures/exportquan/export_quant_{sweep}.pdf",
+        # exportquan_png = "../results/figures/exportquan/export_quant_{sweep}.png",
         exportquan_line = "../results/figures/exportquan/export_quant_line_{sweep}.pdf",
         exportquan_line_png = "../results/figures/exportquan/export_quant_line_{sweep}.png",
     notebook:
@@ -56,7 +56,7 @@ rule plot_export_quan:
 
 rule plot_export_quan_all:
     input:
-        exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion", "demand"]),
+        exportquan = expand("../results/figures/exportquan/export_quant_line_{sweep}.pdf", sweep=["year", "rule", "expansion", "demand"]),
 
 rule plot_reshares:
     input:
