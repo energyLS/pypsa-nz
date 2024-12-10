@@ -1,7 +1,17 @@
+from snakemake.remote.HTTP import RemoteProvider as HTTPRemoteProvider
+import sys
 
-#configfile: "config/config.yaml"
+sys.path.append("./scripts")
 
-localrules: all, report, clean
+from os.path import normpath, exists, isdir
+from shutil import copyfile, move
+
+HTTP = HTTPRemoteProvider()
+
+
+configfile: "../config/config.yaml"
+
+localrules: all
 
 wildcard_constraints:
     country="[a-zA-Z]+",
@@ -35,15 +45,18 @@ rule plot_export_quan:
         edemand_incr = "../resources/edemand_incr/edemand_incr.csv",
         reshares = "../data/owid/share-of-electricity-production-from-renewable-sources.csv",
         regrowth_data = "../resources/regrowth/renewable-growth.csv",
+        electrolyzer_eff = "../resources/electrolyzer_eff.csv",
     output:
-        exportquan = "../results/figures/exportquan/export_quant_{sweep}.pdf",
-        exportquan_png = "../results/figures/exportquan/export_quant_{sweep}.png",
+        # exportquan = "../results/figures/exportquan/export_quant_{sweep}.pdf",
+        # exportquan_png = "../results/figures/exportquan/export_quant_{sweep}.png",
+        exportquan_line = "../results/figures/exportquan/export_quant_line_{sweep}.pdf",
+        exportquan_line_png = "../results/figures/exportquan/export_quant_line_{sweep}.png",
     notebook:
         "notebooks/export_quan.py.ipynb"
 
 rule plot_export_quan_all:
     input:
-        exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion"]),
+        exportquan = expand("../results/figures/exportquan/export_quant_line_{sweep}.pdf", sweep=["year", "rule", "expansion", "demand"]),
 
 rule plot_reshares:
     input:
@@ -55,8 +68,8 @@ rule plot_reshares:
         "notebooks/re_shares.py.ipynb"
 
 rule get_demand_incr:
-    # input:
-    #     edemand = "../data/owid/electricity-demand.csv",
+    input:
+        edemand_raw = "../data/daalder2021/plot-data.csv",
     output:
         edemand_incr = "../resources/edemand_incr/edemand_incr.csv",
     notebook:
@@ -74,11 +87,38 @@ rule plot_regrowth:
     notebook:
         "notebooks/re_growth.py.ipynb"
 
+rule get_electrolyzer_eff:
+    input:
+        costs = expand("../resources/costs_{planning_horizons}.csv", planning_horizons=[2020,2025,2030,2035,2040,2045,2050]),
+    output:
+        electrolyzer_eff = "../resources/electrolyzer_eff.csv",
+    notebook:
+        "notebooks/electrolyzer_eff.py.ipynb"
 
-rule paper_figs:
+rule retrieve_cost_data:
+    input:
+        HTTP.remote(
+            f"raw.githubusercontent.com/PyPSA/technology-data/{config['costs']['version']}/outputs/costs"
+            + "_{planning_horizons}.csv",
+            keep_local=True,
+        ),
+    output:
+        costs="../resources/costs_{planning_horizons}.csv",
+    resources:
+        mem_mb=5000,
+    run:
+        move(input[0], output[0])
+
+rule retrieve_cost_data_all:
+    input:
+        costs = expand("../resources/costs_{planning_horizons}.csv", planning_horizons=[2020,2025,2030,2035,2040,2045,2050]),
+
+
+rule collect_figures:
     input:
         modelenergy = "../results/figures/modelenergy/export_comp.pdf",
         exportquan = expand("../results/figures/exportquan/export_quant_{sweep}.pdf", sweep=["year", "rule", "expansion"]),
+        exportquan_line = expand("../results/figures/exportquan/export_quant_line_{sweep}.pdf", sweep=["rule", "expansion", "demand"]),
         reshares = "../results/figures/reshares/nzl.pdf",
         regrowth = "../results/figures/regrowth/nzl.pdf",
         threshold_diff = "../results/figures/rule/threshold_diff.pdf",
