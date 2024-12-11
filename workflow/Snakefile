@@ -78,7 +78,7 @@ rule get_demand_incr:
 rule plot_regrowth:
     input:
         reprod = "../data/owid/modern-renewable-prod.csv",
-        mbie = "../data/mbie/electricity.xlsx",
+        mbie = "../data/mbie/electricity.xlsx", # Source: mbieelectricity2024
         edemand = "../data/owid/electricity-demand.csv",
     output:
         regrowth = "../results/figures/regrowth/nzl.pdf",
