@@ -1,3 +1,15 @@
+
+
+paper_colors:
+  case_a: 'g'
+  case_b: 'black'
+  case_c: '#235ebc'
+  h_export: '#78AB46'
+  dom_demand: "black"
+  avail_elec: "#235ebc"
+
+
+
 tech_colors:
   (CAPEX < 100.0 M€ thres.): "lightgray"
   (OPEX < 100.0 M€ thres.): "gray"
