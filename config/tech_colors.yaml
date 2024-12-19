@@ -1,12 +1,15 @@
 
 
 paper_colors:
-  case_a: 'g'
+  case_a: '#DAA520'
   case_b: 'black'
-  case_c: '#235ebc'
+  case_c: "red"
   h_export: '#78AB46'
   dom_demand: "black"
   avail_elec: "#235ebc"
+  threshold: "#235ebc" # Explaination graph
+  re: '#78AB46' # Explaination graph
+  fossil: 'grey' # Explaination graph
 
 
 
@@ -14,6 +17,7 @@ tech_colors:
   (CAPEX < 100.0 M€ thres.): "lightgray"
   (OPEX < 100.0 M€ thres.): "gray"
   (Dispatch < 1.0 TWh thres.): "gray"
+  (Dispatch < 3.0 TWh thres.): "gray"
   H2 Electrolysis electricity: "lightgray"
   Domestic electricity: "gray"
   SMR CC: "darkblue"
@@ -56,7 +60,7 @@ tech_colors:
   gas boilers: '#ee8340'
   gas boiler marginal: '#ee8340'
   urban central gas CHP (CAPEX): '#ee8340'
-  urban central gas CHP: '#ee8340'
+  urban central gas CHP: 'brown'
   urban central gas CHP CC: '#ee8340'
   residential urban decentral heat: '#ee8340'
   services urban decentral heat: '#ee8340'
