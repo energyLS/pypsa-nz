@@ -1,5 +1,8 @@
 
 
+sensitivity:
+  electrolyzer_cost: [-25,-10,10, 20] #Variation in electrolyzer cost
+
 
 costs:
   year: 2030
