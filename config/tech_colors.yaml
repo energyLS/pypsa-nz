@@ -214,7 +214,20 @@ tech_colors:
   electricity demand: "black"
   Local electricity: "black"
   Geothermal: "#ba91b1"
+
   
+  agriculture oil emissions: "#d73027"
+  aviation oil emissions: "#f46d43"
+  residential oil emissions: "#4575b4"
+  residential gas emissions: "#5b8fd1"
+  services oil emissions: "#74add1"
+  services gas emissions: "#8abde8"
+  industry oil emissions: "#e08214"
+  industry gas emissions: "#e49b3a"
+  industry coal: "#e6b167"
+  industry coal emissions: "#e8c894"
+  coal emissions aggregate: "#636363"
+  power sector: "#1a9850"
 
 me_colors:
   efuel: black
