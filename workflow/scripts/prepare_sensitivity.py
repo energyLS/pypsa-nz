@@ -23,7 +23,7 @@ if __name__ == "__main__":
         )
 
     # Get variation from config
-    electrolyzer_cost = snakemake.wildcards.cost_var
+    electrolyzer_cost = int(snakemake.wildcards.cost_var)
 
     n = pypsa.Network(snakemake.input.network)
 
