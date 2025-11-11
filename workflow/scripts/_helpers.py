@@ -17,12 +17,59 @@ import pandas as pd
 import requests
 import yaml
 
+
+import logging
+import os
+import shutil
+import subprocess
+import zipfile
+from pathlib import Path
+
+import fiona
+import geopandas as gpd
+import numpy as np
+import pandas as pd
+import requests
+from pypsa.components import component_attrs, components
+from pypsa.descriptors import Dict
+from shapely.geometry import Point
+from vresutils.costdata import annuity
+
 # from fake_useragent import UserAgent
 # from pypsa.components import component_attrs, components
 from shapely.geometry import Point
 from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
+
+
+def override_component_attrs(directory):
+    """Tell PyPSA that links can have multiple outputs by
+    overriding the component_attrs. This can be done for
+    as many buses as you need with format busi for i = 2,3,4,5,....
+    See https://pypsa.org/doc/components.html#link-with-multiple-outputs-or-inputs
+
+    Parameters
+    ----------
+    directory : string
+        Folder where component attributes to override are stored
+        analogous to ``pypsa/component_attrs``, e.g. `links.csv`.
+
+    Returns
+    -------
+    Dictionary of overriden component attributes.
+    """
+
+    attrs = Dict({k: v.copy() for k, v in component_attrs.items()})
+
+    for component, list_name in components.list_name.items():
+        fn = f"{directory}/{list_name}.csv"
+        if os.path.isfile(fn):
+            overrides = pd.read_csv(fn, index_col=0, na_values="n/a")
+            attrs[component] = overrides.combine_first(attrs[component])
+
+    return attrs
+
 
 
 def mock_snakemake(
