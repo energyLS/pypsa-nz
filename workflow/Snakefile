@@ -118,7 +118,7 @@ rule prepare_sensitivity:
     input:
         network = "../results/nz_2035_lowfix_lowcagr/postnetworks/elec_s_10_ec_lc3.0_Co2L_3H_2035_0.071_BU_10export.nc",
     output:
-        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/prenetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}.nc",
+        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/prenetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}_tech{tech}.nc",
     script:
         "scripts/prepare_sensitivity.py"
 
@@ -128,24 +128,24 @@ rule solve_sensitivity:
         # augmented_line_connection=config["augmented_line_connection"],
         limit_max_growth=config["limit_max_growth"],
     input:
-        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/prenetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}.nc",
+        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/prenetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}_tech{tech}.nc",
         overrides="../data/override_component_attrs",
     output:
-        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/postnetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}.nc"
+        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/postnetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}_tech{tech}.nc"
     log:
         solver=os.path.normpath(
             "logs/"
-            + "solve_network/elec_s{cost_var}_solver.log"
+            + "solve_network/elec_s{cost_var}_{tech}_solver.log"
         ),
         python="logs/"
-            + "solve_network/elec_s{cost_var}_python.log",
+            + "solve_network/elec_s{cost_var}_{tech}_python.log",
     script:
         "scripts/solve_sensitivity.py"
 
 
 rule solve_sensitivity_all:
     input:
-        network = expand("../results/nz_2035_lowfix_lowcagr/sensitivity/postnetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}.nc", cost_var=config["sensitivity"]["electrolyzer_cost"], allow_missing=True)
+        network = expand("../results/nz_2035_lowfix_lowcagr/sensitivity/postnetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}_tech{tech}.nc", cost_var=config["sensitivity"]["cost_var"], tech=config["sensitivity"]["techs"], allow_missing=True)
 
 
 

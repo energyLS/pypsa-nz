@@ -1,8 +1,8 @@
 logging_level: INFO
 
 sensitivity:
-  electrolyzer_cost: [0, 30] #Variation in electrolyzer cost
-
+  cost_var: [-50, -30, 30, 50]
+  techs: ["electrolyzer_cost", "offshore_cost", "storage_tank_cost"]
 
 costs:
   year: 2030
