@@ -9,6 +9,7 @@ dconf
 *.png
 !readme/brownfield_capacities_.pdf
 !readme/brownfield_capacities_.png
+!workflow/data/costs_2035.csv
 
 # generated files
 results/

@@ -1,7 +1,23 @@
+
+
+paper_colors:
+  case_a: '#DAA520'
+  case_b: 'black'
+  case_c: "red"
+  h_export: '#78AB46'
+  dom_demand: "black"
+  avail_elec: "#235ebc"
+  threshold: "#235ebc" # Explaination graph
+  re: '#78AB46' # Explaination graph
+  fossil: 'grey' # Explaination graph
+
+
+
 tech_colors:
   (CAPEX < 100.0 M€ thres.): "lightgray"
   (OPEX < 100.0 M€ thres.): "gray"
   (Dispatch < 1.0 TWh thres.): "gray"
+  (Dispatch < 3.0 TWh thres.): "gray"
   H2 Electrolysis electricity: "lightgray"
   Domestic electricity: "gray"
   SMR CC: "darkblue"
@@ -44,7 +60,7 @@ tech_colors:
   gas boilers: '#ee8340'
   gas boiler marginal: '#ee8340'
   urban central gas CHP (CAPEX): '#ee8340'
-  urban central gas CHP: '#ee8340'
+  urban central gas CHP: 'brown'
   urban central gas CHP CC: '#ee8340'
   residential urban decentral heat: '#ee8340'
   services urban decentral heat: '#ee8340'
@@ -198,7 +214,20 @@ tech_colors:
   electricity demand: "black"
   Local electricity: "black"
   Geothermal: "#ba91b1"
+
   
+  agriculture oil emissions: "#d73027"
+  aviation oil emissions: "#f46d43"
+  residential oil emissions: "#4575b4"
+  residential gas emissions: "#5b8fd1"
+  services oil emissions: "#74add1"
+  services gas emissions: "#8abde8"
+  industry oil emissions: "#e08214"
+  industry gas emissions: "#e49b3a"
+  industry coal: "#e6b167"
+  industry coal emissions: "#e8c894"
+  coal emissions aggregate: "#636363"
+  power sector: "#1a9850"
 
 me_colors:
   efuel: black

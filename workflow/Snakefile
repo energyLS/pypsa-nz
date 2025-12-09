@@ -56,7 +56,7 @@ rule plot_export_quan:
 
 rule plot_export_quan_all:
     input:
-        exportquan = expand("../results/figures/exportquan/export_quant_line_{sweep}.pdf", sweep=["year", "rule", "expansion", "demand"]),
+        exportquan = expand("../results/figures/exportquan/export_quant_line_{sweep}.pdf", sweep=["rule", "expansion", "demand"]),
 
 rule plot_reshares:
     input:
@@ -78,7 +78,7 @@ rule get_demand_incr:
 rule plot_regrowth:
     input:
         reprod = "../data/owid/modern-renewable-prod.csv",
-        mbie = "../data/mbie/electricity.xlsx",
+        mbie = "../data/mbie/electricity.xlsx", # Source: mbieelectricity2024
         edemand = "../data/owid/electricity-demand.csv",
     output:
         regrowth = "../results/figures/regrowth/nzl.pdf",
@@ -114,6 +114,41 @@ rule retrieve_cost_data_all:
         costs = expand("../resources/costs_{planning_horizons}.csv", planning_horizons=[2020,2025,2030,2035,2040,2045,2050]),
 
 
+rule prepare_sensitivity:
+    input:
+        network = "../results/nz_2035_lowfix_lowcagr/postnetworks/elec_s_10_ec_lc3.0_Co2L_3H_2035_0.071_BU_10export.nc",
+    output:
+        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/prenetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}_tech{tech}.nc",
+    script:
+        "scripts/prepare_sensitivity.py"
+
+rule solve_sensitivity:
+    params:
+        solving=config["solving"],
+        # augmented_line_connection=config["augmented_line_connection"],
+        limit_max_growth=config["limit_max_growth"],
+    input:
+        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/prenetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}_tech{tech}.nc",
+        overrides="../data/override_component_attrs",
+    output:
+        network = "../results/nz_2035_lowfix_lowcagr/sensitivity/postnetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}_tech{tech}.nc"
+    log:
+        solver=os.path.normpath(
+            "logs/"
+            + "solve_network/elec_s{cost_var}_{tech}_solver.log"
+        ),
+        python="logs/"
+            + "solve_network/elec_s{cost_var}_{tech}_python.log",
+    script:
+        "scripts/solve_sensitivity.py"
+
+
+rule solve_sensitivity_all:
+    input:
+        network = expand("../results/nz_2035_lowfix_lowcagr/sensitivity/postnetworks/elec_s_10_ec_lc3.0_CO2L_3H_2035_0.071_BU_10export_sens{cost_var}_tech{tech}.nc", cost_var=config["sensitivity"]["cost_var"], tech=config["sensitivity"]["techs"], allow_missing=True)
+
+
+
 rule collect_figures:
     input:
         modelenergy = "../results/figures/modelenergy/export_comp.pdf",
@@ -122,6 +157,7 @@ rule collect_figures:
         reshares = "../results/figures/reshares/nzl.pdf",
         regrowth = "../results/figures/regrowth/nzl.pdf",
         threshold_diff = "../results/figures/rule/threshold_diff.pdf",
+        prices = "../results/figures/prices/el-price-avg.pdf",
 
 
 
